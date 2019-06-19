@@ -14,10 +14,13 @@ function App() {
                                         passportNumber: "",
                                         passportIssuer: "",
                                         ipn: "",
-                                        regAddress: "",
+                                        regAdress: "",
                                         localAdress: ""
   });
-
+  const[isNextPagePossible, setIsNextPagePossible] = useState(false);
+  const[isReqNextPage, setIsReqNextPage] = useState(false);
+  console.log("regAdress=", data.regAdress);
+  console.log("localAdress=", data.localAdress);
   
   var styles = {
     rowStyle: "form-group row",
@@ -40,14 +43,31 @@ function App() {
     }
   }
 
+  const changeIsNextPagePossible = (val) => {setIsNextPagePossible(val)}
+  const changeIsReqNextPage = (val) => {setIsReqNextPage(val)}
+
   return (
     <div className="container">
       <div>
-        <Page pageNumber={pageNumber} datas={data} changeData={handleInput} styles={styles}/>
+        <Page 
+        pageNumber={pageNumber}
+        datas={data} 
+        changeData={handleInput} 
+        styles={styles} 
+        isNextPagePossible={isNextPagePossible} 
+        changeIsNextPagePossible={changeIsNextPagePossible}
+        isReqNextPage={isReqNextPage}
+        changeIsReqNextPage={changeIsReqNextPage}/>
       </div>
       <div>
         <button onClick={() => {changePageNumber(-1)}}>Назад</button>
-        <button onClick={() => {changePageNumber(1)}}>Далі</button>
+        <button onClick={() => {setIsReqNextPage(true);
+                                if ( isNextPagePossible ) {
+                                  changePageNumber(1);
+                                  setIsReqNextPage(false); 
+                                }
+                                }
+                        }>Далі</button>
       </div>
       
     </div>
