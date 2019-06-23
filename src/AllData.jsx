@@ -4,17 +4,54 @@ export const AllData = (props) => {
     
   return (
     <div>
-      <h1>Прізвище: {props.datas.surname}</h1>
-      <h1>Ім'я: {props.datas.name}</h1>
-      <h1>По батькові: {props.datas.patronymic}</h1>
-      <h1>Дата народження: {props.datas.birthday}</h1>
-      <h1>Стать: {props.datas.gender}</h1>
-      <h1>Паспорт серія: {props.datas.passportSeries}</h1>
-      <h1>Паспорт номер: {props.datas.passportNumber}</h1>
-      <h1>Паспорт орган видачі: {props.datas.passportIssuer}</h1>
-      <h1>ІПН: {props.datas.ipn}</h1>
-      <h1>Місце реєстраціЇ: {props.datas.regAdress}</h1>
-      <h1>Місце проживання: {props.datas.localAdress}</h1>
+      <div className="row">
+        <div className="col-sm-3 text-right"><h2>Прізвище:</h2></div>
+        <div className="cal-sm-9"><h3>{props.datas.surname}</h3></div>
+      </div>
+      <div className="row">
+        <div className="col-sm-3 text-right"><h2>Ім'я:</h2></div>
+        <div className="cal-sm-9"><h3>{props.datas.name}</h3></div>
+      </div>
+      <div className="row">
+        <div className="col-sm-3 text-right"><h2>По батькові:</h2></div>
+        <div className="cal-sm-9"><h3>{props.datas.patronymic}</h3></div>
+      </div>
+      <div className="row">
+        <div className="col-sm-3 text-right"><h2>Дата народження:</h2></div>
+        <div className="cal-sm-9"><h3>{props.datas.birthday}</h3></div>
+      </div>
+      <div className="row">
+        <div className="col-sm-3 text-right"><h2>Стать:</h2></div>
+        <div className="cal-sm-9"><h3>{props.datas.birthday}</h3></div>
+      </div>
+      <div className="row">
+        <div className="col-sm-3 text-right"><h2>Паспорт серія:</h2></div>
+        <div className="cal-sm-9"><h3>{props.datas.passportSeries}</h3></div>
+      </div>
+      <div className="row">
+        <div className="col-sm-3 text-right"><h2>Паспорт номер:</h2></div>
+        <div className="cal-sm-9"><h3>{props.datas.passportNumber}</h3></div>
+      </div>
+      <div className="row">
+        <div className="col-sm-3 text-right"><h2>Паспорт орган видачі:</h2></div>
+        <div className="cal-sm-9"><h3>{props.datas.passportIssuer}</h3></div>
+      </div>
+      <div className="row">
+        <div className="col-sm-3 text-right"><h2>Паспорт дата видачі:</h2></div>
+        <div className="cal-sm-9"><h3>{props.datas.passportDate}</h3></div>
+      </div>
+      <div className="row">
+        <div className="col-sm-3 text-right"><h2>ІПН:</h2></div>
+        <div className="cal-sm-9"><h3>{props.datas.ipn}</h3></div>
+      </div>
+      <div className="row">
+        <div className="col-sm-3 text-right"><h2>Місце реєстраціЇ: </h2></div>
+        <div className="cal-sm-9"><h3>{props.datas.regAddress}</h3></div>
+      </div>
+      <div className="row">
+        <div className="col-sm-3 text-right"><h2>Місце проживання:  </h2></div>
+        <div className="cal-sm-9"><h3>{props.datas.localAddress}</h3></div>
+      </div>
     </div>
   )
 };

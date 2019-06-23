@@ -1,62 +1,56 @@
 import React, {useState} from 'react';
+
 import {NameBirthGen} from './NameBirthGen'
 import {Passport} from './Passport'
-import {Adress} from './Adress'
+import {Address} from './Address'
 import {Ipn} from './Ipn'
 import {AllData} from './AllData'
 
 export const Page = (props) => {
-  console.log("isReqNextPage=", props.isReqNextPage);
-  const [isIpn, setIsIpn] = useState(true);
-  const [isL, setIsL] = useState(false);
+  const [pageNumber, setPageNumber] = useState(0);
+  const[isNextPagePossible, setIsNextPagePossible] = useState(false);
+  const[isReqNextPage, setIsReqNextPage] = useState(false);
 
-  const changeIsIpn = () => {setIsIpn(!isIpn);}
-  const changeIsL = (e) => {setIsL(!isL);}
+  var prop = { 
+    datas: props.datas,
+    updateData: props.updateData,
+    styles: props.styles,
+    setIsNextPagePossible: setIsNextPagePossible,
+    isReqNextPage: isReqNextPage
+  }
 
-    var pages = [
-    <NameBirthGen 
-      datas={props.datas} 
-      changeData={props.changeData} 
-      styles={props.styles}
-      isNextPagePossible={props.isNextPagePossible} 
-      changeIsNextPagePossible={props.changeIsNextPagePossible}
-      isReqNextPage={props.isReqNextPage}
-      changeIsReqNextPage={props.changeIsReqNextPage}/>,
-    <Passport 
-      datas={props.datas} 
-      changeData={props.changeData} 
-      styles={props.styles}
-      isNextPagePossible={props.isNextPagePossible} 
-      changeIsNextPagePossible={props.changeIsNextPagePossible}
-      isReqNextPage={props.isReqNextPage}
-      changeIsReqNextPage={props.changeIsReqNextPage}/>,
-    <Ipn 
-      datas={props.datas} 
-      changeData={props.changeData} 
-      styles={props.styles} 
-      isIpn={isIpn} 
-      changeIsIpn={changeIsIpn}
-      isNextPagePossible={props.isNextPagePossible} 
-      changeIsNextPagePossible={props.changeIsNextPagePossible}
-      isReqNextPage={props.isReqNextPage}
-      changeIsReqNextPage={props.changeIsReqNextPage}/>,
-    <Adress 
-      datas={props.datas} 
-      changeData={props.changeData} 
-      styles={props.styles} 
-      isL={isL} 
-      changeIsL={changeIsL}
-      isNextPagePossible={props.isNextPagePossible} 
-      changeIsNextPagePossible={props.changeIsNextPagePossible}
-      isReqNextPage={props.isReqNextPage}
-      changeIsReqNextPage={props.changeIsReqNextPage}/>,
+  var pages = [
+    <NameBirthGen {...prop}/>,
+    <Passport {...prop}/>,
+    <Ipn {...prop}/>,
+    <Address {...prop}/>,
     <AllData datas={props.datas}/>,
-    
-    
-];
+  ];
+  
+  const changePageNumber = (diff) => {
+    var nextPage = pageNumber + diff;
+
+    if ( nextPage >= 0 && nextPage <=4 ) {
+      setPageNumber(nextPage); 
+    }
+  }
+
+  const moveForvard = () => {
+    setIsReqNextPage(true);
+
+    if ( isNextPagePossible ) {
+      changePageNumber(1);
+      setIsReqNextPage(false); 
+    }
+  }
+
   return (
-    <div>
-      {pages[props.pageNumber]}
+    <div className="container">
+      {pages[pageNumber]}
+      <div className="text-center">
+          <button className="btn btn-primary" onClick={() => {changePageNumber(-1)}}>Назад</button>
+          <button className="btn btn-primary" onClick={() => {moveForvard()}}>Далі</button>
+        </div>
     </div>
   )
 };

@@ -1,50 +1,83 @@
 import React from 'react';
+import './badges.css'
+
 
 export const Ipn = (props) => {
-    console.log(props.isIpn)
 
-    
-    if ( !props.isIpn ) {
-        props.changeIsNextPagePossible(true);
-        props.datas.ipn = "";
+    var inputStyle = props.styles.inputStyle;
 
-        return(
-            <div>
-                <h1>ІПН відсутній</h1>
-                
-    
-                <div className="form-check">
-                    <input type="checkbox" className="form-check-input" id="isIpn"  onChange={(event)=>{props.changeIsIpn()}} name="isIpn" value="" checked/> 
-                    <label htmlFor="isIpn" className="form-check-label" align="right">Відмовився від ІПН</label>            
-                </div>
-            </div>
-        )
-    } else {
-        var placeholderIpn = "";
+    const handleInput = (p) => {
+        props.updateData({
+            ...props.datas,
+            [p.target.name] : p.target.value
+        });
+    } 
 
-        if ( !props.datas.ipn ) {
-            props.changeIsNextPagePossible(false);
-            if ( props.isReqNextPage ) {
-                placeholderIpn = "ОБОВ'ЯЗКОВО ЗАПОВНІТЬ ЦЕ ПОЛЕ!";
-            }
-        } else {
-            props.changeIsNextPagePossible(true);
-        }
-        return (
-            <div>
-                <h4 align="center">ІПН</h4>
+    const changeFlag = (e) => {
+        props.updateData({
+          ...props.datas,
+          isIpn : !props.datas.isIpn
+      });
+    }
+
+    const renderIpnField = () => {
+        if ( props.datas.isIpn ) {
+            return (
                 <div className={props.styles.rowStyle}>
-                    <label htmlFor="inputIpn" className={props.styles.labelStyle} align="right">ІПН</label>
-                    <div className={props.styles.inputStyle}>
-                        <input type="text" className="form-control" id="nputIpn" placeholder={placeholderIpn} onChange={(e)=>{props.changeData(e)}} name="ipn" value={props.datas.ipn}/>
-                    </div>
-                </div>
-                <div className="form-check">
-                    <input type="checkbox" className="form-check-input" id="isIpn"  onChange={(event)=>{props.changeIsIpn()}} name="isIpn" value=""/> 
-                    <label htmlFor="isIpn" className="form-check-label" align="right">Відмовився від ІПН</label>            
-                </div>
+                <label  className={props.styles.labelStyle}>ІПН</label>
+                <input type="text" className={setInputStyle("ipn")} onChange={handleInput} name="ipn" value={props.datas.ipn}/>
+                {showValidationMessage("ipn")}
             </div>
-        )
+            )
+        }
+        props.datas.ipn = "";
+        return null;
     }
     
+    const setInputStyle = (inputName) => {
+        if ( props.isReqNextPage ) {
+            if ( props.datas[inputName] ) {
+                return inputStyle + " is-valid";
+            } else {
+                return inputStyle + " is-invalid";
+            } 
+        }
+        return inputStyle;
+    }
+
+    const showValidationMessage = (inputName) => {
+        if ( !props.datas.inputName ) {
+            return(
+                <div className="invalid-feedback">
+                    <label className={props.styles.messageLabelStyle}></label>
+                    ОБОВ'ЯЗКОВО ЗАПОВНІТЬ ЦЕ ПОЛЕ
+                </div>
+            )
+        } else {
+            return null
+        }
+    }
+
+    if ( props.datas.ipn || !props.datas.isIpn ) {
+        props.setIsNextPagePossible(true);
+    } else {
+        props.setIsNextPagePossible(false);
+    }
+                                          
+    return (
+        <div>
+            <form>
+                <div>{renderIpnField()}</div>
+                <div className={props.styles.rowStyle}>
+                    <label  className={props.styles.messageLabelStyle}>
+                        <input type="checkbox" className="form-check-input" onChange={changeFlag} name="isIpn" value={props.datas.isIpn} checked={!props.datas.isIpn}/>
+                    </label> 
+                    <div>
+                        <label  className="form-check-label">Відмовився від ІПН</label> 
+                    </div>
+                </div>
+                <h6>* поле обов'язкове для заповнення</h6>
+            </form>
+        </div>
+    )
 };

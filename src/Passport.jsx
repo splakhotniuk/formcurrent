@@ -1,53 +1,73 @@
 import React from 'react';
+import './badges.css'
+
 
 export const Passport = (props) => {
-    console.log("Запрос на след стр=", props.isReqNextPage);
-    var placeholderSeries = "AA";
-    var placeholderNumber = "000000";
-    var placeholderIssuer = "";
-   
+    var inputStyle = props.styles.inputStyle;
 
-    if ( !props.datas.passportSeries ) {
-        props.changeIsNextPagePossible(false);
+    const setInputStyle = (inputName) => {
         if ( props.isReqNextPage ) {
-            placeholderSeries = "ОБОВ'ЯЗКОВО ЗАПОВНІТЬ ЦЕ ПОЛЕ!";
+            if ( props.datas[inputName] ) {
+                return inputStyle + " is-valid";
+            } else {
+                return inputStyle + " is-invalid";
+            } 
         }
-    } else if ( !props.datas.passportNumber ) {
-        props.changeIsNextPagePossible(false);
-        if ( props.isReqNextPage ) {
-            placeholderNumber = "ОБОВ'ЯЗКОВО ЗАПОВНІТЬ ЦЕ ПОЛЕ!";
-        }
-    } else if ( !props.datas.passportIssuer ) { 
-        props.changeIsNextPagePossible(false);
-        if ( props.isReqNextPage ) {
-            placeholderIssuer = "ОБОВ'ЯЗКОВО ЗАПОВНІТЬ ЦЕ ПОЛЕ!";
-        }
-    } else {
-        props.changeIsNextPagePossible(true);
+        return inputStyle;
     }
-    
-    
-  return (
-    <div>
-        <h4 align="center">Паспорт</h4>
-        <div className={props.styles.rowStyle}>
-            <label htmlFor="inputPassportSeries" className={props.styles.labelStyle} align="right">Серія</label>
-            <div className={props.styles.inputStyle}>
-                <input type="text" className="form-control" id="inputPassportSeries" placeholder={placeholderSeries} onChange={(e)=>{props.changeData(e)}} name="passportSeries" value={props.datas.passportSeries}/>
-            </div>
+
+    const handleInput = (p) => {
+        props.updateData({
+            ...props.datas,
+            [p.target.name] : p.target.value
+        });
+    } 
+
+    const showValidationMessage = (inputName) => {
+        if ( !props.datas.inputName ) {
+            return(
+                <div className="invalid-feedback">
+                    <label className={props.styles.messageLabelStyle}></label>
+                    ОБОВ'ЯЗКОВО ЗАПОВНІТЬ ЦЕ ПОЛЕ
+                </div>
+            )
+        } else {
+            return null
+        }
+    }
+
+    if ( props.datas.passportSeries && props.datas.passportNumber && props.datas.passportIssuer && props.datas.passportDate ) {
+        props.setIsNextPagePossible(true);
+    } else {
+        props.setIsNextPagePossible(false);
+    }
+                                          
+    return (
+        <div>
+            <h4 align="center">Паспорт</h4>
+            <form>
+                <div className={props.styles.rowStyle}>
+                    <label className={props.styles.labelStyle}>Серія</label>
+                    <input type="text" className={setInputStyle("passportSeries")}  onChange={handleInput} name="passportSeries" value={props.datas.passportSeries}/>
+                    {showValidationMessage("passportSeries")}
+                </div>
+                <div className={props.styles.rowStyle}>
+                    <label className={props.styles.labelStyle}>Номер</label>
+                    <input type="text" className={setInputStyle("passportNumber")} onChange={handleInput} name="passportNumber" value={props.datas.passportNumber}/>
+                    {showValidationMessage("passportNumber")}
+                </div>
+                <div className={props.styles.rowStyle}>
+                    <label className={props.styles.labelStyle}>Ким виданий</label>
+                    <input type="text" className={setInputStyle("passportIssuer")} onChange={handleInput} name="passportIssuer" value={props.datas.passportIssuer}/>
+                    {showValidationMessage("passportIssuer")}
+                </div>
+                <div className={props.styles.rowStyle}>
+                    <label className={props.styles.labelStyle}>Дата видачі</label>
+                    <input type="date" className={setInputStyle("passportDate")} onChange={handleInput} name="passportDate" value={props.datas.passportDate}/>
+                    {showValidationMessage("passportDate")}
+                </div>
+                <h6>* поле обов'язкове для заповнення</h6>
+            </form>
         </div>
-        <div className={props.styles.rowStyle}>
-            <label htmlFor="inputPassportNumber" className={props.styles.labelStyle} align="right">Номер</label>
-            <div className={props.styles.inputStyle}>
-                <input type="text" className="form-control" id="inputPassportNumber" placeholder={placeholderNumber} onChange={(e)=>{props.changeData(e)}} name="passportNumber" value={props.datas.passportNumber}/>
-            </div>
-        </div>
-        <div className={props.styles.rowStyle}>
-            <label htmlFor="inputPassportIssuer" className={props.styles.labelStyle} align="right">Ким виданий</label>
-            <div className={props.styles.inputStyle}>
-                <input type="text" className="form-control" id="inputPassportIssuer" placeholder={placeholderIssuer} onChange={(e)=>{props.changeData(e)}} name="passportIssuer" value={props.datas.passportIssuer}/>
-            </div>
-        </div>
-    </div>
-  )
+    )
 };
