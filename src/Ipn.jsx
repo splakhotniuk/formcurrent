@@ -1,3 +1,12 @@
+/**
+ * This is a React Component.
+ *
+ * @param {...string} inputStyle- A string param
+ * 
+ * @return {*} HTML form??????
+ *
+ * 
+ */
 import React from 'react';
 import './badges.css'
 

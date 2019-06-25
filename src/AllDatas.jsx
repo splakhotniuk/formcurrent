@@ -18,16 +18,36 @@ export const AllDatas = (props) => {
         isLiveRegAddress: false
       }
 
-      const renderHeading = () => {
-          for ( var key in heading ) {
-              return <h2>{heading[key]}</h2>
-          }
 
-      }
+      //   somewhere ...data
     
   return (
     <div>
-      {renderHeading()}
+      
+      {
+        Object.keys(heading).map(
+          (name) => {
+            return (
+              <div>
+                <div>
+
+<ul>
+    {['first', 'second', 'third'].map((elem) => (<li>{elem}</li>))}
+</ul>
+
+
+</div>
+
+                <div className="label">{heading[name]}</div>
+
+                <div className="data"> {props.datas[name]}</div>
+              </div>
+
+            )
+          }
+        )
+      }
+
     </div>
   )
 };
