@@ -22,7 +22,7 @@ export const AllData = (props) => {
       </div>
       <div className="row">
         <div className="col-sm-3 text-right"><h2>Стать:</h2></div>
-        <div className="cal-sm-9"><h3>{props.datas.birthday}</h3></div>
+        <div className="cal-sm-9"><h3>{props.datas.gender}</h3></div>
       </div>
       <div className="row">
         <div className="col-sm-3 text-right"><h2>Паспорт серія:</h2></div>
@@ -52,6 +52,7 @@ export const AllData = (props) => {
         <div className="col-sm-3 text-right"><h2>Місце проживання:  </h2></div>
         <div className="cal-sm-9"><h3>{props.datas.localAddress}</h3></div>
       </div>
+      <div className="container text-center">{props.setNavigationButtons()}</div>
     </div>
   )
 };

@@ -13,21 +13,50 @@ export const Page = (props) => {
   const[isNextPagePossible, setIsNextPagePossible] = useState(false);
   const[isReqNextPage, setIsReqNextPage] = useState(false);
 
+  const setNavigationButtons = () => {
+    if ( !pageNumber ) {
+      return (
+        <div>
+          <div>
+            <button className="btn btn-success btn-block" onClick={() => setPageNumber(1)}>Ввести нові дані</button>
+          </div>
+          <div>
+            <button className="btn btn-outline-primary btn-block" onClick={() => moveDownloadForvard()}>Завантажити готові дані</button>
+          </div>
+        </div>
+      )
+    } else if ( pageNumber === 5 ) {
+      return (
+        <div>
+          <button className="btn btn-light" onClick={() => changePageNumber(-1)}>Назад</button>
+          <button className="btn btn-primary" onClick={() => sendDatas()}>Відправити</button>
+      </div>
+      )
+    }
+    return (
+      <div>
+          <button className="btn btn-light" onClick={() => changePageNumber(-1)}>Назад</button>
+          <button className="btn btn-success" onClick={() => moveForvard()}>Далі</button>
+      </div>
+    )
+  }
+
   var prop = { 
     datas: props.datas,
     updateData: props.updateData,
     styles: props.styles,
     setIsNextPagePossible: setIsNextPagePossible,
-    isReqNextPage: isReqNextPage
-  }
+    isReqNextPage: isReqNextPage,
+    setNavigationButtons: setNavigationButtons
+  } 
 
   var pages = [
-    <StartPage {...prop}/>,
+    <StartPage setNavigationButtons={setNavigationButtons}/>,
     <NameBirthGen {...prop}/>,
     <Passport {...prop}/>,
     <Ipn {...prop}/>,
     <Address {...prop}/>,
-    <AllData datas={props.datas}/>,
+    <AllData datas={props.datas} setNavigationButtons={setNavigationButtons}/>,
   ];
   
   const changePageNumber = (diff) => {
@@ -67,39 +96,13 @@ export const Page = (props) => {
   }
 
   const sendDatas = () => {
-    axios.post('localhost:3000', props.datas);
-  }
-
-  const setButtons = () => {
-    if ( !pageNumber ) {
-      return (
-        <div>
-          <button className="btn btn-success" onClick={() => moveForvard()}>Заповнити вручну</button>
-          <button className="btn btn-primary" onClick={() => moveDownloadForvard()}>Отримати список даних</button>
-        </div>
-      )
-    } else if ( pageNumber === 5 ) {
-      return (
-        <div>
-          <button className="btn btn-light" onClick={() => changePageNumber(-1)}>Назад</button>
-          <button className="btn btn-primary" onClick={() => sendDatas()}>Відправити</button>
-      </div>
-      )
-    }
-    return (
-      <div>
-          <button className="btn btn-light" onClick={() => changePageNumber(-1)}>Назад</button>
-          <button className="btn btn-success" onClick={() => moveForvard()}>Далі</button>
-      </div>
-    )
+    axios.post('/api/questionary', props.datas);
   }
 
   return (
     <div className="container">
       {pages[pageNumber]}
-      <div className="text-center">
-          {setButtons()}
-      </div>
+      
     </div>
   )
 };

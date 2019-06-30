@@ -51,3 +51,8 @@ export const AllDatas = (props) => {
     </div>
   )
 };
+
+/*app.delete('/single/delete/:id',
+ (req, res) => {
+     Questionary.findOneAndDelete({_id: req.params.id})
+ }*/

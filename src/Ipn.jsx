@@ -87,6 +87,7 @@ export const Ipn = (props) => {
                 </div>
                 <h6>* поле обов'язкове для заповнення</h6>
             </form>
+            <div className="container text-center">{props.setNavigationButtons()}</div>
         </div>
     )
 };
