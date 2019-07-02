@@ -5,52 +5,52 @@ export const AllData = (props) => {
   return (
     <div>
       <div className="row">
-        <div className="col-sm-3 text-right"><h2>Прізвище:</h2></div>
-        <div className="cal-sm-9"><h3>{props.datas.surname}</h3></div>
+        <dl className="form-control col-sm-3 text-right border-0">Прізвище</dl>
+        <dd className="form-control col-sm-9 border-0 font-weight-bold">{props.datas.surname}</dd>
       </div>
       <div className="row">
-        <div className="col-sm-3 text-right"><h2>Ім'я:</h2></div>
-        <div className="cal-sm-9"><h3>{props.datas.name}</h3></div>
+        <dl className="form-control col-sm-3 text-right border-0">Ім'я</dl>
+        <dd className="form-control col-sm-9 border-0 font-weight-bold">{props.datas.name}</dd>
       </div>
       <div className="row">
-        <div className="col-sm-3 text-right"><h2>По батькові:</h2></div>
-        <div className="cal-sm-9"><h3>{props.datas.patronymic}</h3></div>
+        <dl className="form-control col-sm-3 text-right border-0">По батькові</dl>
+        <dd className="form-control col-sm-9 border-0 font-weight-bold">{props.datas.patronymic}</dd>
       </div>
       <div className="row">
-        <div className="col-sm-3 text-right"><h2>Дата народження:</h2></div>
-        <div className="cal-sm-9"><h3>{props.datas.birthday}</h3></div>
+        <dl className="form-control col-sm-3 text-right border-0">Дата народження</dl>
+        <dd className="form-control col-sm-9 border-0 font-weight-bold">{props.datas.birthday}</dd>
       </div>
       <div className="row">
-        <div className="col-sm-3 text-right"><h2>Стать:</h2></div>
-        <div className="cal-sm-9"><h3>{props.datas.gender}</h3></div>
+        <dl className="form-control col-sm-3 text-right border-0">Стать</dl>
+        <dd className="form-control col-sm-9 border-0 font-weight-bold">{props.datas.gender}</dd>
       </div>
       <div className="row">
-        <div className="col-sm-3 text-right"><h2>Паспорт серія:</h2></div>
-        <div className="cal-sm-9"><h3>{props.datas.passportSeries}</h3></div>
+        <dl className="form-control col-sm-3 text-right border-0">Паспорт серія</dl>
+        <dd className="form-control col-sm-9 border-0 font-weight-bold">{props.datas.passportSeries}</dd>
       </div>
       <div className="row">
-        <div className="col-sm-3 text-right"><h2>Паспорт номер:</h2></div>
-        <div className="cal-sm-9"><h3>{props.datas.passportNumber}</h3></div>
+        <dl className="form-control col-sm-3 text-right border-0">Паспорт номер</dl>
+        <dd className="form-control col-sm-9 border-0 font-weight-bold">{props.datas.passportNumber}</dd>
+      </div>
+      <dl className="row">
+        <dl className="form-control col-sm-3 text-right border-0">Паспорт орган видачі</dl>
+        <dd className="form-control col-sm-9 border-0 font-weight-bold">{props.datas.passportIssuer}</dd>
+      </dl>
+      <div className="row">
+        <dl className="form-control col-sm-3 text-right border-0">Паспорт дата видачі</dl>
+        <dd className="form-control col-sm-9 border-0 font-weight-bold">{props.datas.passportDate}</dd>
       </div>
       <div className="row">
-        <div className="col-sm-3 text-right"><h2>Паспорт орган видачі:</h2></div>
-        <div className="cal-sm-9"><h3>{props.datas.passportIssuer}</h3></div>
+        <dl className="form-control col-sm-3 text-right border-0">ІПН</dl>
+        <dd className="form-control col-sm-9 border-0 font-weight-bold">{props.datas.ipn}</dd>
       </div>
       <div className="row">
-        <div className="col-sm-3 text-right"><h2>Паспорт дата видачі:</h2></div>
-        <div className="cal-sm-9"><h3>{props.datas.passportDate}</h3></div>
+        <dl className="form-control col-sm-3 text-right border-0">Місце реєстраціЇ:</dl>
+        <dd className="form-control col-sm-9 border-0 font-weight-bold">{props.datas.regAddress}</dd>
       </div>
       <div className="row">
-        <div className="col-sm-3 text-right"><h2>ІПН:</h2></div>
-        <div className="cal-sm-9"><h3>{props.datas.ipn}</h3></div>
-      </div>
-      <div className="row">
-        <div className="col-sm-3 text-right"><h2>Місце реєстраціЇ: </h2></div>
-        <div className="cal-sm-9"><h3>{props.datas.regAddress}</h3></div>
-      </div>
-      <div className="row">
-        <div className="col-sm-3 text-right"><h2>Місце проживання:  </h2></div>
-        <div className="cal-sm-9"><h3>{props.datas.localAddress}</h3></div>
+        <dl className="form-control col-sm-3 text-right border-0">Місце проживання:</dl>
+        <dd className="form-control col-sm-9 border-0 font-weight-bold">{props.datas.localAddress}</dd>
       </div>
       <div className="container text-center">{props.setNavigationButtons()}</div>
     </div>

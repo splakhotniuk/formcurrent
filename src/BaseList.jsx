@@ -21,12 +21,14 @@ export const BaseList = (props) =>{
 
   useEffect(fetchData, [])
 
-  const dataRow = (person) => {
+  const dataRow = (person, isViewMode = false) => {
+   
+
       return (
           <tr key={person._id}>
             <td>
               <div>
-                <Link to={"/single/" + person._id}> Деталі </Link>
+                <button className="btn btn-outline-light btn-sm" onClick={() => {isViewMode=!isViewMode;}}><Link to={"/single/" + person._id}> Деталі </Link></button>
               </div>
             </td>
               <td>
@@ -36,7 +38,11 @@ export const BaseList = (props) =>{
                   {person.name}
               </td>
               <td>
-                <div className="text-danger" onClick={() => {console.log('удаляется', person._id); axios.get("/single/delete/" + person._id).then((res)=>console.log(res))}}> Видалити </div>
+                <button type="button" className="btn btn-outline-light btn-sm text-danger" onClick={() => {console.log('удаляется', person._id); axios.get("/single/delete/" + person._id).then(
+              (serverData) => {
+                  console.log(`Был удален  ${JSON.stringify(serverData.data)}`);
+              }
+          )}}> Видалити </button>
               </td>
           </tr>
       )
@@ -44,7 +50,7 @@ export const BaseList = (props) =>{
 
   return (
       <div>
-          <table className="table">
+          <table className="table table-striped  table-hover table-responsive-sm">
               <thead>
                   <tr>
                       <th>

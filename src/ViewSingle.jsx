@@ -30,63 +30,60 @@ export const ViewSingle = (props) => {
         fetchData, 
         [id]
     )
-    
+
     const renderData = () => {
         return (
             <div>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>Прізвище:</td> 
-                            <td>{data.surname}</td> 
-                        </tr>
-                        <tr>
-                            <td>Ім'я:</td>
-                            <td>{data.name}</td>
-                        </tr>
-                        <tr>
-                            <td>По-батькові</td>
-                            <td>{data.patronymic}</td>
-                        </tr>
-                        <tr>
-                            <td>Дата народження:</td>
-                            <td>{data.birthday}</td>
-                        </tr>
-                        <tr>
-                            <td>Стать:</td>
-                            <td>{data.gender}</td>
-                        </tr>
-                        <tr>
-                            <td>Паспорт серія:</td>
-                            <td>{data.passportSeries}</td>
-                        </tr>
-                        <tr>
-                            <td>Паспорт номер:</td>
-                            <td>{data.passportNumber}</td>
-                        </tr>
-                        <tr>
-                            <td>Паспорт орган видачі:</td>
-                            <td>{data.passportIssuer}</td>
-                        </tr>
-                        <tr>
-                            <td>Паспорт дата видачі</td>
-                            <td>{data.passportDate}</td>
-                        </tr>
-                        <tr>
-                            <td>ІПН:</td>
-                            <td>{data.ipn}</td>
-                        </tr>
-                        <tr>
-                            <td>Місце реєстраціЇ:</td>
-                            <td>{data.regAddress}</td>
-                        </tr>
-                        <tr>
-                            <td>Місце проживання:</td>
-                            <td>{data.localAddress}</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div className="row">
+              <dl className="form-control col-sm-3 text-right border-0">Прізвище</dl>
+              <dd className="form-control col-sm-9 border-0 font-weight-bold">{data.surname}</dd>
             </div>
+            <div className="row">
+              <dl className="form-control col-sm-3 text-right border-0">Ім'я</dl>
+              <dd className="form-control col-sm-9 border-0 font-weight-bold">{data.name}</dd>
+            </div>
+            <div className="row">
+              <dl className="form-control col-sm-3 text-right border-0">По батькові</dl>
+              <dd className="form-control col-sm-9 border-0 font-weight-bold">{data.patronymic}</dd>
+            </div>
+            <div className="row">
+              <dl className="form-control col-sm-3 text-right border-0">Дата народження</dl>
+              <dd className="form-control col-sm-9 border-0 font-weight-bold">{data.birthday}</dd>
+            </div>
+            <div className="row">
+              <dl className="form-control col-sm-3 text-right border-0">Стать</dl>
+              <dd className="form-control col-sm-9 border-0 font-weight-bold">{data.gender}</dd>
+            </div>
+            <div className="row">
+              <dl className="form-control col-sm-3 text-right border-0">Паспорт серія</dl>
+              <dd className="form-control col-sm-9 border-0 font-weight-bold">{data.passportSeries}</dd>
+            </div>
+            <div className="row">
+              <dl className="form-control col-sm-3 text-right border-0">Паспорт номер</dl>
+              <dd className="form-control col-sm-9 border-0 font-weight-bold">{data.passportNumber}</dd>
+            </div>
+            <dl className="row">
+              <dl className="form-control col-sm-3 text-right border-0">Паспорт орган видачі</dl>
+              <dd className="form-control col-sm-9 border-0 font-weight-bold">{data.passportIssuer}</dd>
+            </dl>
+            <div className="row">
+              <dl className="form-control col-sm-3 text-right border-0">Паспорт дата видачі</dl>
+              <dd className="form-control col-sm-9 border-0 font-weight-bold">{data.passportDate}</dd>
+            </div>
+            <div className="row">
+              <dl className="form-control col-sm-3 text-right border-0">ІПН</dl>
+              <dd className="form-control col-sm-9 border-0 font-weight-bold">{data.ipn}</dd>
+            </div>
+            <div className="row">
+              <dl className="form-control col-sm-3 text-right border-0">Місце реєстраціЇ:</dl>
+              <dd className="form-control col-sm-9 border-0 font-weight-bold">{data.regAddress}</dd>
+            </div>
+            <div className="row">
+              <dl className="form-control col-sm-3 text-right border-0">Місце проживання:</dl>
+              <dd className="form-control col-sm-9 border-0 font-weight-bold">{data.localAddress}</dd>
+            </div>
+            
+          </div>
         )
     }
 

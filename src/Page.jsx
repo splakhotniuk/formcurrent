@@ -35,7 +35,7 @@ export const Page = (props) => {
     }
     return (
       <div>
-          <button className="btn btn-light" onClick={() => changePageNumber(-1)}>Назад</button>
+          <button className="btn btn-light" onClick={() => {changePageNumber(-1); setIsReqNextPage(false)}}>Назад</button>
           <button className="btn btn-success" onClick={() => moveForvard()}>Далі</button>
       </div>
     )
@@ -77,14 +77,14 @@ export const Page = (props) => {
   }
 
   const moveDownloadForvard = () => {
-      props.datas.surname = "Ivanov";
+      props.datas.surname = "Иванов";
       props.datas.name = "Ivan"; 
       props.datas.patronymic =  "Ivanovich"; 
       props.datas.birthday = "1960-12-18";
       props.datas.gender = "Чоловіча";
       props.datas.passportSeries =  "AA";
       props.datas.passportNumber = "777777";
-      props.datas.passportIssuer =  "Issuer";
+      props.datas.passportIssuer =  "Кивський обласний МВГУ МВС в Київській області";
       props.datas.passportDate = "1990-12-18";
       props.datas.ipn = "123456789";
       props.datas.isIpn = true;
@@ -100,7 +100,7 @@ export const Page = (props) => {
   }
 
   return (
-    <div className="container">
+    <div className="container border border-info rounded">
       {pages[pageNumber]}
       
     </div>
